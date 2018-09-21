@@ -7,7 +7,7 @@ import pytz
 def load_attempts(url):
     for page_num in itertools.count(start=1, step=1):
         response = requests.get(url, params={'page': page_num})
-        if response.status_code != requests.codes.ok:
+        if not response.ok:
             break
         for record in response.json()['records']:
             yield record
